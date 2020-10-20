@@ -1,6 +1,7 @@
 package com.example.fuzz.service;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.exmple.fuzz.service.ITestService;
 import org.springframework.stereotype.Service;
 
 /**

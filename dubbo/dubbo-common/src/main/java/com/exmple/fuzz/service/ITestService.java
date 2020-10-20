@@ -1,4 +1,4 @@
-package com.example.fuzz.service;
+package com.exmple.fuzz.service;
 
 /**
  * <p>

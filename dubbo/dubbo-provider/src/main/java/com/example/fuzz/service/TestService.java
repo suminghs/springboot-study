@@ -1,6 +1,7 @@
 package com.example.fuzz.service;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.exmple.fuzz.service.ITestService;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,7 +15,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Service
 public class TestService implements ITestService {
-    @Override
     public String hello() {
         return "hello";
     }
