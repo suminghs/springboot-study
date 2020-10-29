@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <parent>
         <artifactId>study</artifactId>
-        <groupId>com.example</groupId>
+        <groupId>com.example.fuzz</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>dubbo</artifactId>
