@@ -12,6 +12,7 @@
     <modules>
         <module>dubbo</module>
         <module>easticsearch</module>
+        <module>elasticsearch-jd</module>
     </modules>
 
     <properties>
