@@ -49,8 +49,13 @@ public class GoodsService {
         return !bulk.hasFailures();
     }
 
-    public List<Goods> searchByKeywords(String keywords) {
+    public List<Goods> searchByKeywords(String keywords, Integer page) {
         List<Goods> goodsList = new ArrayList<Goods>();
+        int size = 15;
+        if (page == null || page < 1) {
+            page = 1;
+        }
+        int from = (page - 1) * 10;
         try {
             SearchRequest request = new SearchRequest();
             request.source(new SearchSourceBuilder()
@@ -58,7 +63,7 @@ public class GoodsService {
                     .highlighter(new HighlightBuilder()
                                     .field("title")
                                     .preTags("<span style='color:red'>")
-                                    .postTags("</span>")));
+                                    .postTags("</span>")).from(from).size(size));
             SearchResponse response = restHighLevelClient.search(request, RequestOptions.DEFAULT);
 
             for (SearchHit hit : response.getHits().getHits()) {

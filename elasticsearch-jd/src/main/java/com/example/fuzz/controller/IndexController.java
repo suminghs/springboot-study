@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -36,9 +37,9 @@ public class IndexController {
     }
 
     @ResponseBody
-    @GetMapping("/search/{keywords}")
-    public List<Goods> selectGoods(@PathVariable("keywords") String keywords) {
-        return goodsService.searchByKeywords(keywords);
+    @GetMapping("/search/{keywords}/{page}")
+    public List<Goods> selectGoods(@PathVariable("keywords") String keywords, @PathVariable("page") Integer page) {
+        return goodsService.searchByKeywords(keywords, page);
     }
 
 
