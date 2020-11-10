@@ -13,6 +13,8 @@
         <module>dubbo</module>
         <module>easticsearch</module>
         <module>elasticsearch-jd</module>
+        <module>dockerfile</module>
+        <module>docker-compose</module>
     </modules>
 
     <properties>
