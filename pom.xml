@@ -15,6 +15,7 @@
         <module>elasticsearch-jd</module>
         <module>dockerfile</module>
         <module>docker-compose</module>
+        <module>http</module>
     </modules>
 
     <properties>
