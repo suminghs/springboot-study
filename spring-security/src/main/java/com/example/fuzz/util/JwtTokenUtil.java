@@ -2,16 +2,19 @@ package com.example.fuzz.util;
 
 import com.example.fuzz.config.Audience;
 import com.example.fuzz.exception.GlobalException;
+import com.example.fuzz.vo.SelfUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * <p>
@@ -59,7 +62,7 @@ public class JwtTokenUtil {
         }
     }
 
-    public String createJwt(Integer userId, String username) {
+    public String createJwt(Long userId, String username) {
         Date now = new Date(System.currentTimeMillis());
         JwtBuilder builder = Jwts.builder()
                 .setId(userId.toString())
@@ -80,5 +83,13 @@ public class JwtTokenUtil {
 
     public String getUsername(String token) {
         return parseJwt(token).getSubject();
+    }
+
+    public HashMap<String, Object> formatTokenInfo(String token, SelfUserDetails userDetails) {
+        HashMap<String, Object> info = new HashMap<>();
+        info.put("access_token", token);
+        info.put("expires_in", audience.getExpiresSecond());
+        info.put("user_info", userDetails);
+        return info;
     }
 }

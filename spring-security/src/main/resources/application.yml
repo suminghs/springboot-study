@@ -8,6 +8,7 @@ spring:
     password: root
     url: jdbc:mysql://127.0.0.1:3306/rbac?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT%2B8
 
+spring.resources.add-mappings: false
 
 ##jwt配置
 audience:
@@ -25,3 +26,26 @@ audience:
 #    swagger:
 #      v2:
 #        host: localhost:8081
+
+whitelist:
+  urlList:
+    - /swagger/**
+    - /swagger-ui.html/**
+    - /swagger-ui.html#!/**
+    - /swagger-resources/**
+    - /doc.html/**
+    - /doc.html#/**
+    - /favicon.ico
+    - /webjars/**
+    - /error/**
+    - /v2/**
+    - /login
+    - /register
+    - /article/**
+    - /vc/uploads/**
+    - /*/upload
+    - /common/**
+    - /
+    - /index
+    - /**/**/export # 上线前去掉
+    - /**/**/expertError # 上线前去掉

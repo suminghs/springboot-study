@@ -1,5 +1,6 @@
 package com.example.fuzz.service;
 
+import com.example.fuzz.controller.WhiteUrl;
 import com.example.fuzz.exception.GlobalException;
 import com.example.fuzz.model.Permission;
 import com.example.fuzz.model.Role;
@@ -57,6 +58,5 @@ public class AuthService {
 
         return hasPermission;
     }
-
 
 }

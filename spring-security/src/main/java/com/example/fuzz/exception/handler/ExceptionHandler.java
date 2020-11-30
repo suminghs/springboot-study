@@ -27,8 +27,18 @@ public class ExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     private ApiResponse globalExceptionHandler(GlobalException e) {
-        System.out.println("111");
-        return ApiResponse.ofError("内部错误");
+        System.out.println("全局异常处理============");
+        return ApiResponse.ofError(e.getMessage());
     }
+//    /**
+//     * 拦截 GlobalException 异常
+//     */
+//    @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
+//    @ResponseBody
+//    @ResponseStatus(HttpStatus.OK)
+//    private ApiResponse exceptionHandler(Exception e) {
+//        System.out.println("222");
+//        return ApiResponse.ofError("系统异常");
+//    }
 
 }

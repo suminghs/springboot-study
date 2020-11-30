@@ -1,6 +1,8 @@
 package com.example.fuzz.config;
 
+import com.example.fuzz.config.security.CustomAccessDeniedHandler;
 import com.example.fuzz.config.security.JwtAuthenticationFilter;
+import com.example.fuzz.controller.WhiteUrl;
 import com.example.fuzz.exception.GlobalException;
 import com.example.fuzz.service.AuthService;
 import com.example.fuzz.service.SelfUserDetailService;
@@ -10,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -43,6 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    @Autowired
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    @Autowired
+    private WhiteUrl whiteUrl;
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().disable()
@@ -60,21 +70,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                .anyRequest().access("@authService.hasPermission(request,authentication)")
-
-                .and().exceptionHandling().accessDeniedHandler(new AccessDeniedHandler() {
-                    @Override
-                    public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-                        ResponseUtil.renderJson(httpServletResponse, "");
-                    }
-                })
+                .anyRequest().access("@authService.hasPermission(request, authentication)")
+                .and().logout().disable()
+                // Session 管理
+                .sessionManagement()
+                // 因为使用了JWT，所以这里不管理Session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .csrf().disable();
-
+        http.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
 
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -92,6 +106,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/index");
+        WebSecurity and = web.ignoring().and();
+        whiteUrl.getUrlList().forEach(url -> {
+            and.ignoring().antMatchers(url);
+        });
     }
 }
