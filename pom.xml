@@ -17,6 +17,7 @@
         <module>docker-compose</module>
         <module>http</module>
         <module>spring-security</module>
+        <module>java8</module>
     </modules>
 
     <properties>
