@@ -1,0 +1,32 @@
+server:
+  port: 8180
+
+audience:
+  # 代表这个JWT的接收对象,存入audience
+  clientId: 098f6bcd4621d373cade4e832627b4f6
+  # 密钥, 经过Base64加密, 可自行替换
+  base64Secret: fuzz
+  # JWT的签发主体，存入issuer
+  name: restapiuser
+  # 过期时间，时间戳
+  expiresSecond: 172800
+  urlList:
+    - /swagger/**
+    - /swagger-ui.html/**
+    - /swagger-ui.html#!/**
+    - /swagger-resources/**
+    - /doc.html/**
+    - /doc.html#/**
+    - /favicon.ico
+    - /webjars/**
+    - /error/**
+    - /v2/**
+    - /login
+    - /register
+    - /article/**
+    - /vc/uploads/**
+    - /*/upload
+    #    - /**/download
+    - /common/**
+    #    - /**/**/export # 上线前去掉
+    - /**/**/expertError # 上线前去掉
