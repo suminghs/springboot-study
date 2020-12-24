@@ -25,27 +25,10 @@ import java.util.HashMap;
 public class JwtTokenUtil {
     public static final String AUTH_HEADER_KEY = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
-    private static JwtTokenUtil instance;
-    private Integer userId;
     @Autowired
     private Audience audience;
 
     public JwtTokenUtil() {
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public static JwtTokenUtil getInstance() {
-        if (instance == null) {
-            instance = new JwtTokenUtil();
-        }
-        return instance;
     }
 
     public Claims parseJwt(String jsonWebToken) {
