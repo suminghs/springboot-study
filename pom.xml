@@ -19,6 +19,8 @@
         <module>spring-security</module>
         <module>java8</module>
         <module>rabbitmq</module>
+        <module>jwt</module>
+        <module>common-core</module>
     </modules>
 
     <properties>
