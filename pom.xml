@@ -22,6 +22,7 @@
         <module>jwt</module>
         <module>common-core</module>
         <module>swagger</module>
+        <module>redis</module>
     </modules>
 
     <properties>
