@@ -23,6 +23,7 @@
         <module>common-core</module>
         <module>swagger</module>
         <module>redis</module>
+        <module>socket-io</module>
     </modules>
 
     <properties>

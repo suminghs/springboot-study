@@ -1,0 +1,7 @@
+server:
+  port: 9091
+
+ws:
+  server:
+    port: 8081
+    host: localhost
