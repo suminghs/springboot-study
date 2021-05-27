@@ -24,6 +24,8 @@
         <module>swagger</module>
         <module>redis</module>
         <module>socket-io</module>
+        <module>elasticsearch-elk-log</module>
+        <module>kafka</module>
     </modules>
 
     <properties>

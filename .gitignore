@@ -4,6 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+elasticsearch-elk-log/logs
+
 ### STS ###
 .apt_generated
 .classpath
@@ -31,3 +33,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/logs/
