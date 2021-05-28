@@ -4,7 +4,7 @@
 
 确保计算机已装docker
 
-代码所有所需环境可在[https://gitee.com/fz972/docker-env.git][https://gitee.com/fz972/docker-env.git]中找到
+代码所有所需环境可在[https://gitee.com/fz972/docker-env.git](https://gitee.com/fz972/docker-env.git)中找到
 
 搭建步骤
 
