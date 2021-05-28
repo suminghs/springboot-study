@@ -26,6 +26,7 @@
         <module>socket-io</module>
         <module>elasticsearch-elk-log</module>
         <module>kafka</module>
+        <module>mongodb</module>
     </modules>
 
     <properties>
