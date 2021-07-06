@@ -27,6 +27,7 @@
         <module>elasticsearch-elk-log</module>
         <module>kafka</module>
         <module>mongodb</module>
+        <module>redis-lock</module>
     </modules>
 
     <properties>
