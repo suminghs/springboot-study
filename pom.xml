@@ -28,6 +28,7 @@
         <module>kafka</module>
         <module>mongodb</module>
         <module>redis-lock</module>
+        <module>xxl-job</module>
     </modules>
 
     <properties>
